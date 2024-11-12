@@ -6,7 +6,7 @@
 Before starting, create a ```.env``` file and add the ```DB_URL``` environment variable. You can find an example in the ```env.example``` file.
 **Knex ORM** was used for interacting with the database.
 
-PS: ```console.log``` functions in the ```app.ts``` just for demo how the app actually works🥸
+PS: ```console.log``` functions in the ```app.ts``` just to show how the app actually works🥸
 
 # Running
 ```bash
