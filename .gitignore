@@ -2,3 +2,4 @@ node_modules/
 dist/
 tad
 .env
+*.sql
