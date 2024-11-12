@@ -4,11 +4,24 @@
   "description": "Backend Developer Task",
   "main": "dist/app.js",
   "scripts": {
-    "build": "npx tsc src/app.ts"
+    "build": "npx tsc",
+    "start": "node dist/app.js",
+    "mr:make": "npx knex migrate:make $1 -x ts --migrations-directory src/db/migrations",
+    "mr:up": "npx knex migrate:up --knexfile ./dist/db/knexfile.js",
+    "mr:down": "npx knex migrate:down --knexfile ./dist/db/knexfile.js",
+    "mr:latest": "npx knex migrate:latest --knexfile ./dist/db/knexfile.js",
+    "mr:rollback": "npx knex migrate:rollback --knexfile ./dist/db/knexfile.js",
+    "mr:list": "npx knex migrate:list --knexfile ./dist/db/knexfile.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^22.9.0",
     "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "knex": "^3.1.0",
+    "pg": "^8.13.1"
   }
 }
