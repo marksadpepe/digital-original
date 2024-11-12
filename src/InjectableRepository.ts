@@ -34,7 +34,10 @@ export class InjectableRepository {
           if (classificatonName) {
             this.where("Classifications.name", classificatonName);
           }
-        });
+        })
+        .whereNull("Artworks.deleted_at")
+        .whereNull("Artists.deleted_at")
+        .whereNull("Galleries.deleted_at");
 
       if (limit > 0) {
         artworks = await promise.limit(limit).offset(offset);
@@ -58,6 +61,8 @@ export class InjectableRepository {
         .groupBy("Artists.name_original")
         .select("Artists.name_original as artist")
         .sum("Artworks.price as total_value")
+        .whereNull("Artworks.deleted_at")
+        .whereNull("Artists.deleted_at")
     } catch (err) {
       throw new Error(err);
     }
@@ -73,6 +78,7 @@ export class InjectableRepository {
         .leftJoin("Files", "Artists.photo_id", "Files.id")
         .leftJoin("Artworks_Artists", "Artists.id", "Artworks_Artists.artist_id")
         .where("Artists.id", id)
+        .whereNull("Artists.deleted_at")
         .groupBy("Artists.id", "Files.filename")
         .select(
           "Artists.name_original as name_original",
@@ -100,6 +106,8 @@ export class InjectableRepository {
           "Galleries.name as gallery"
         )
         .whereNull("Artworks_Artists.artwork_id")
+        .whereNull("Artists.deleted_at")
+        .whereNull("Galleries.deleted_at")
         .groupBy("Artists.id", "Galleries.name");
     } catch (err) {
       throw new Error(err);

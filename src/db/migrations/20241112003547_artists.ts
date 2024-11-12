@@ -5,6 +5,7 @@ exports.up = function(knex: any) {
     table.string("name_english", 255);
     table.uuid("photo_id").references("id").inTable("Files");
     table.integer("gallery_id").references("id").inTable("Galleries");
+    table.timestamp("deleted_at").nullable().defaultTo(null);
   })
   .then(() => {
     return knex("Artists").insert([
@@ -31,6 +32,12 @@ exports.up = function(knex: any) {
         name_english: null,
         photo_id: null,
         gallery_id: 2
+      },
+      {
+        name_original: 'Mark Parker',
+        name_english: null,
+        photo_id: null,
+        gallery_id: 1
       },
     ]);
   });

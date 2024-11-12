@@ -3,6 +3,7 @@ exports.up = function(knex: any) {
     table.increments("id").primary();
     table.string("name", 255).notNullable();
     table.decimal("price").notNullable();
+    table.timestamp("deleted_at").nullable().defaultTo(null);
   })
   .then(() => {
     return knex("Artworks").insert([
