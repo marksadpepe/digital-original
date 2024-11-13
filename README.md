@@ -22,7 +22,7 @@ npm run mr:latest
 npm run mr:rollback
 
 # to rollback all the completed migrations
-npm run mr:rollback
+npm run mr:rollback --all
 
 # to run the next migration that has not yet been run
 npm run mr:up
